@@ -23,7 +23,15 @@ class Tweet extends AppModel {
 		'text' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => '入力は必須です。',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'mb_maxLength' => array(
+				'rule' => array('mb_maxLength','140'),
+				'message' => '140文字以下にしてください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

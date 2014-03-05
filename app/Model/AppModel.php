@@ -30,4 +30,16 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	public function mb_between($data, $min, $max) {
+		$data = array_values($data);
+		$data = $data[0];
+		$length = mb_strlen($data,'UTF-8');
+		return ($length <= $max && $min <= $length);
+	}
+	public function mb_maxLength($data, $max) {
+		$data = array_values($data);
+		$data = $data[0];
+		$length = mb_strlen($data,'UTF-8');
+		return ($length <= $max);
+	}
 }
