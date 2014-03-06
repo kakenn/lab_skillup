@@ -1,16 +1,34 @@
 var $signupForm,$dispErr;
+function checkVaildate(){
+	if($signupForm.validate().checkForm()) {
+		$('.submitBtn').removeAttr('disabled').removeClass('disabled');
+	} else {
+		$('.submitBtn').attr('disabled','true').addClass('disabled');
+	}
+}
+jQuery.validator.addMethod("viewname", function(value, element) {
+	return this.optional(element) || /^([^\x01-\x7E]|[a-zA-Z0-9-_])+$/.test(value);
+	}, "名前は全角、又は半角英数字(記号は _ と - が使えます)で入力してください。"
+);
+jQuery.validator.addMethod("alphaNumeric", function(value, element) {
+	return this.optional(element) || /^([a-zA-Z0-9]+)$/.test(value);
+	}, "半角英数字で入力してください。"
+);
 $(function(){
 	$signupForm = $('#signup').find('form');
 	$dispErr = $('.dispErr');
 	$signupForm.validate({
+		onsubmit: false,
 		rules : {
 			"data[User][viewname]": {
 				required: true,
-				rangelength: [4, 20]
+				rangelength: [4, 20],
+				viewname: true,
 			},
 			"data[User][username]": {
 				required: true,
 				rangelength: [4, 20],
+				alphaNumeric: true,
 				remote: {
 					type: "post",
 					url: webroot+'index/uservalidate/',
@@ -28,6 +46,7 @@ $(function(){
 			},
 			"data[User][password]": {
 				required: true,
+				alphaNumeric: true,
 				rangelength: [4, 8]
 			},
 			"data[User][password_cf]": {
@@ -48,10 +67,12 @@ $(function(){
 			"data[User][username]": {
 				required: "ユーザー名を入力してください。<br>",
 				rangelength: "ユーザー名は4文字以上,20文字以下で入力してください。<br>",
-				remote: "そのアカウントはすでに登録されています。<br>"
+				alphaNumeric: "ユーザー名は半角英数字で入力してください。<br>",
+				remote: "そのユーザー名はすでに登録されています。<br>"
 			},
 			"data[User][password]": {
 				required: "パスワードを入力してください。<br>",
+				alphaNumeric: "パスワードは半角英数字で入力してください。<br>",
 				rangelength: "パスワード4文字以上,8文字以下で入力してください。<br>"
 			},
 			"data[User][password_cf]": {
@@ -86,10 +107,3 @@ $(function(){
 		$('.submitBtn').attr('disabled','true').addClass('disabled');
 	}
 });
-function checkVaildate(){
-	if($signupForm.validate().checkForm()) {
-		$('.submitBtn').removeAttr('disabled').removeClass('disabled');
-	} else {
-		$('.submitBtn').attr('disabled','true').addClass('disabled');
-	}
-}
