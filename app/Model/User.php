@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
  *
@@ -128,5 +129,12 @@ class User extends AppModel {
 		$data = array_values($data);
 		$data = $data[0];
 		return preg_match('/^([^\x01-\x7E]|[a-zA-Z0-9-_])+$/', $data);
+	}
+	public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['password'])) {
+			$passwordHasher = new SimplePasswordHasher();
+			$this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
+		}
+		return true;
 	}
 }
