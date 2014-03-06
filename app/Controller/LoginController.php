@@ -17,4 +17,7 @@ class LoginController extends AppController {
 			}
 		}
 	}
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
 }
