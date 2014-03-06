@@ -1,4 +1,39 @@
 @import "_setting";
 @import "_reset";
 @import "_mixin";
-@import "compass"
+@import "compass";
+
+#signup{
+	.input{
+		//width: 100%;
+		//text-align: center;
+		label{
+			//text-align: left;
+			display: inline-block;
+			width: 120px;
+		}
+		input{
+			width: 200px;
+			border: solid 1px #eee;
+			border-radius: 5px;
+			padding: 5px;
+		}
+	}
+	.submit{
+		input{
+			background: #1e9af8;
+			color: #fff;
+			border:none;
+			padding: 5px 15px;
+			border-radius: 5px;
+			-webkit-transition: 100ms linear;
+			-moz-transition: 100ms linear;
+			-ms-transition: 100ms linear;
+			-o-transition: 100ms linear;
+			transition: 100ms linear;
+			&:hover{
+				background: #80c6fa;
+			}
+		}
+	}
+}
