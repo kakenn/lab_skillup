@@ -39,4 +39,7 @@ class AppController extends Controller {
 		),
 		'DebugKit.Toolbar',
 	);
+	public function beforeFilter() {
+		$this->set('user',$this->Auth->user());
+	}
 }
