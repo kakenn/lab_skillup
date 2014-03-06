@@ -6,8 +6,10 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
  *
  */
 class User extends AppModel {
-
+	public $name = 'User';
 /**
+ *
+ *
  * Display field
  *
  * @var string
