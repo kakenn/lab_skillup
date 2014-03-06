@@ -1,0 +1,17 @@
+@if $use_spacing_classes {
+    @for $i from 0 through 20 {
+        .mt#{$i * 5} { margin-top: 5px * $i !important; }
+        .mb#{$i * 5} { margin-bottom: 5px * $i !important; }
+        .pt#{$i * 5} { padding-top: 5px * $i !important; }
+        .pb#{$i * 5} { padding-bottom: 5px * $i !important; }
+    }
+}
+.fl{
+	float: left !important;
+}
+.fr{
+	float: right !important;
+}
+.tac{
+	text-align: center !important;
+}
