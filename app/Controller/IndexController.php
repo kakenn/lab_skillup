@@ -3,7 +3,7 @@ class IndexController extends AppController {
 	public $uses = array('User');
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow(array('index','signup'));
+		$this->Auth->allow(array('index','signup','userValidate'));
 	}
 
 	public function index(){
@@ -18,5 +18,18 @@ class IndexController extends AppController {
 				$this->Session->setFlash(__('登録に失敗しました。再度お試しください。'));
 			}
 		}
+	}
+	public function uservalidate(){
+		$this->autoRender = false;
+		if ($this->request->is('post')) {
+			$count = $this->User->find('count',array(
+				'conditions' => array('username' => $this->request->data['username'])
+			));
+			if($count==0){
+				echo "true";
+				return false;
+			}
+		}
+		echo "false";
 	}
 }

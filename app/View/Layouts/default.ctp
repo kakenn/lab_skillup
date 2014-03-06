@@ -26,8 +26,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
+	<script>
+		var webroot = '<?php echo $this->Html->url('/', true); ?>';
+	</script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<?php
+		echo $this->Html->script('jquery.validate.min');
+		echo $this->Html->script('script');
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('style');
