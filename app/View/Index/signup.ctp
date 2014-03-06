@@ -1,5 +1,6 @@
 <h1>サインアップ</h1>
 <div id="signup">
+	<?php echo $this->Html->script('validation'); ?>
 	<?php echo $this->Form->create('User'); ?>
 	<div class="dispErr">
 		<?php echo $this->Session->flash(); ?><br>
@@ -17,6 +18,6 @@
 	<?php echo $this->Form->input('password_cf',array('error' => false,'type'=>'password','label'=>'パスワード(確認)')) ?>
 	<?php echo $this->Form->input('mail',array('error' => false,'type'=>'email','label'=>'メールアドレス')) ?>
 	<?php echo $this->Form->input('public',array('error' => false,'type'=>'checkbox','label'=>'つぶやきを非公開にする')) ?>
-	<?php echo $this->Form->submit('アカウントを作成する'); ?>
+	<?php echo $this->Form->submit('アカウントを作成する',array('class'=>'submitBtn disabled','disabled'=>true)); ?>
 </div>
 <?php echo $this->Form->end(); ?>
