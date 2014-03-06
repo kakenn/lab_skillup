@@ -7,6 +7,14 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
  */
 class User extends AppModel {
 	public $name = 'User';
+	public $hasMany = array(
+		'follow' => array(
+			'className' => 'follow',
+			'foreignKey' => 'user_id',
+			'order' => 'follow.follow_id DESC',
+			'dependent' => true,
+		)
+	);
 /**
  *
  *
