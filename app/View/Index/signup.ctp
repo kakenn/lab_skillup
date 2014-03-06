@@ -1,5 +1,5 @@
 <h1>サインアップ</h1>
-<div id="signup">
+<div id="signup" class="form">
 	<?php echo $this->Html->script('validation'); ?>
 	<?php echo $this->Form->create('User'); ?>
 	<div class="dispErr">
