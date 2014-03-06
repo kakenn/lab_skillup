@@ -25,18 +25,21 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<ul>
+				<li><?php echo $this->Html->link('ホーム',array('controller'=>'index','action'=>'index'))?></li>
+				<?php if($user): ?>
+				<li><?php echo $this->Html->link('友達を検索',array('controller'=>'search','action'=>'index'))?></li>
+				<li><?php echo $this->Html->link('ログアウト',array('controller'=>'login','action'=>'logout'))?></li>
+				<?php else: ?>
+				<li><?php echo $this->Html->link('ユーザー登録',array('controller'=>'index','action'=>'signup'))?></li>
+				<li><?php echo $this->Html->link('ログイン',array('controller'=>'login','action'=>'index'))?></li>
+				<?php endif; ?>
+			</ul>
 		</div>
 		<div id="content">
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
 		</div>
 	</div>
 </body>

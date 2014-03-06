@@ -2,7 +2,11 @@
 @import "_reset";
 @import "_mixin";
 @import "compass";
-
+#header{
+	height: 50px;
+	width: 100%;
+	background: #ddd;
+}
 .form{
 	.dispErr{
 		color: #f00;
