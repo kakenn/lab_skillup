@@ -25,18 +25,23 @@ class User extends AppModel {
 		'username' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'ユーザー名を入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'isUnique', => array(
+			'isUnique' => array(
 				'rule' => array('isUnique'),
+				'message' => 'そのユーザー名はすでに登録されています。',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'ユーザー名は半角英数字で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -44,7 +49,7 @@ class User extends AppModel {
 			),
 			'between' => array(
 				'rule' => array('between',4, 20),
-				//'message' => 'Your custom message here',
+				'message' => 'ユーザー名は4文字以上,20文字以下で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -54,7 +59,7 @@ class User extends AppModel {
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'パスワードを入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -62,7 +67,7 @@ class User extends AppModel {
 			),
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'パスワードは半角英数字で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -70,7 +75,7 @@ class User extends AppModel {
 			),
 			'between' => array(
 				'rule' => array('between',4, 8),
-				//'message' => 'Your custom message here',
+				'message' => 'パスワード4文字以上,8文字以下で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -80,7 +85,7 @@ class User extends AppModel {
 		'viewname' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => '名前を入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -88,7 +93,7 @@ class User extends AppModel {
 			),
 			'usernameCheck' => array(
 				'rule' => array('usernameCheck'),
-				//'message' => 'Your custom message here',
+				'message' => '名前は全角、又は半角英数字(記号は _ と - が使えます)で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -96,7 +101,7 @@ class User extends AppModel {
 			),
 			'mb_between' => array(
 				'rule' => array('mb_between','4','20'),
-				//'message' => 'Your custom message here',
+				'message' => '名前は4文字以上、20文字以下で入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -106,7 +111,7 @@ class User extends AppModel {
 		'mail' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'メールアドレスに間違いがあります。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -114,7 +119,7 @@ class User extends AppModel {
 			),
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'メールアドレスを入力してください。',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -122,7 +127,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength','100'),
-				//'message' => 'Your custom message here',
+				'message' => 'メールアドレスは100文字以下で入力してください',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

@@ -15,7 +15,7 @@ class IndexController extends AppController {
 				$this->Session->setFlash(__('登録完了しました。'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('登録に失敗しました。再度お試しください。'));
+				$this->Session->setFlash(__('入力に誤りがあります。'));
 			}
 		}
 	}
