@@ -43,13 +43,12 @@ class Tweet extends AppModel {
 			if(!empty($follow)){
 				$result = $this->find('all',array(
 					'conditions' => array('OR'=>$follow),
-					'order' => array('created DESC'),
+					'order' => array('Tweet.created DESC'),
 					'limit' => 10,
 					'page' => $page,
 				));
 				$count = $this->find('count',array(
 					'conditions' => array('OR'=>$follow),
-					'order' => array('created DESC'),
 				));
 			}
 			$next=false;
