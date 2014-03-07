@@ -12,7 +12,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<?php
 		echo $this->Html->script('jquery.validate.min');
-		echo $this->Html->script('script');
+		//echo $this->Html->script('script');
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('style');
