@@ -27,6 +27,28 @@ class Tweet extends AppModel {
 			),
 		),
 	);
+	public function getTweets($id=null){
+		if($id!=null){
+			App::import('Model','User');
+			$user = new User;
+			$res = $user->find('all',array(
+				'conditions' => array('id' => $id)
+			));
+			if($res){
+				$follow=array(array('user_id'=>$id));
+				for($i=0;$i<count($res[0]['follow']);$i++){
+					$follow[] = array('user_id'=>$res[0]['follow'][$i]['follow_id']);
+				}
+			}
+			if(!empty($follow)){
+				$result = $this->find('all',array(
+					'conditions' => array('OR'=>$follow),
+					'order' => array('created DESC'),
+				));
+			}
+			return $result;
+		}
+	}
 	public function beforeSave($options = array()) {
 
 		//現在時刻を代入
