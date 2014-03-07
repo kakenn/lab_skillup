@@ -1,4 +1,5 @@
 <h1>いまなにしてる</h1>
+<?php echo $this->Html->script('script'); ?>
 <?php echo $this->Form->create('Tweet'); ?>
 <?php echo $this->Session->flash(); ?>
 <?php echo $this->Form->error('text'); ?>
