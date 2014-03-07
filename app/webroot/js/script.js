@@ -8,8 +8,10 @@ $(function(){
 		$strNum.text(140-strNum);
 		if(strNum<=140){
 			$tweetBtn.removeAttr('disabled');
+			$strNum.removeClass('red');
 		}else{
 			$tweetBtn.attr('disabled',true);
+			$strNum.addClass('red');
 		}
 	})
 });
