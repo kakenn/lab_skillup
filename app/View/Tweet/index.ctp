@@ -8,7 +8,7 @@
 <?php echo $this->Form->submit('ツイート',array('id'=>'tweetBtn')); ?>
 <?php echo $this->Form->end(); ?>
 <ul id="tweetList">
-	<?php foreach ($tweetData as $value) : ?>
+	<?php foreach ($tweetData['res'] as $value) : ?>
 		<li>
 			<dl>
 				<dt><a href="#"><?php echo $value['User']['viewname'] ?></a></dt>
@@ -18,3 +18,13 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+<div id="page">
+	<?php
+	if($tweetData['next']){
+		echo $this->Html->link('次のページへ',array('action'=>'index',$page+1));
+	}
+	if($tweetData['prev']){
+		echo $this->Html->link('前のページへ',array('action'=>'index',$page-1));
+	}
+	?>
+</div>

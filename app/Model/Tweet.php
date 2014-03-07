@@ -27,7 +27,7 @@ class Tweet extends AppModel {
 			),
 		),
 	);
-	public function getTweets($id=null){
+	public function getTweets($id=null,$page=1){
 		if($id!=null){
 			App::import('Model','User');
 			$user = new User;
@@ -44,9 +44,23 @@ class Tweet extends AppModel {
 				$result = $this->find('all',array(
 					'conditions' => array('OR'=>$follow),
 					'order' => array('created DESC'),
+					'limit' => 10,
+					'page' => $page,
+				));
+				$count = $this->find('count',array(
+					'conditions' => array('OR'=>$follow),
+					'order' => array('created DESC'),
 				));
 			}
-			return $result;
+			$next=false;
+			if($count>$page*10){
+				$next=true;
+			}
+			$prev=false;
+			if($page>1){
+				$prev=true;
+			}
+			return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 		}
 	}
 	public function beforeSave($options = array()) {

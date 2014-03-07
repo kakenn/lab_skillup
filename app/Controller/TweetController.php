@@ -6,7 +6,7 @@ class TweetController extends AppController {
 		$this->Auth->allow();
 	}
 
-	public function index(){
+	public function index($page=1){
 		//ツイートの部分の処理
 		if($this->request->isPost()){
 			if(!empty($this->request->data['Tweet']['text'])){
@@ -19,9 +19,12 @@ class TweetController extends AppController {
 			}
 		}
 
+		if(!is_numeric($page)){
+			$page=1;
+		}
 		//ツイート表示部分の処理
-		$tweetData = $this->Tweet->getTweets($this->Auth->user('id'));
-		//debug($tweetData);
+		$tweetData = $this->Tweet->getTweets($this->Auth->user('id'),$page);
 		$this->set('tweetData',$tweetData);
+		$this->set('page',$page);
 	}
 }
