@@ -7,6 +7,9 @@ class TweetController extends AppController {
 	}
 
 	public function index($page=1){
+		//ページが数字かどうか。
+		$this->pageNumeric($page);
+
 		//ツイートの部分の処理
 		if($this->request->isPost()){
 			if(!empty($this->request->data['Tweet']['text'])){
@@ -18,13 +21,13 @@ class TweetController extends AppController {
 				}
 			}
 		}
-
-		if(!is_numeric($page)){
-			$page=1;
-		}
 		//ツイート表示部分の処理
 		$tweetData = $this->Tweet->getTweets($this->Auth->user('id'),$page);
 		$this->set('tweetData',$tweetData);
 		$this->set('page',$page);
+	}
+	private function pageNumeric($page){
+		if(!is_numeric($page)) return 1;
+		return $page;
 	}
 }
