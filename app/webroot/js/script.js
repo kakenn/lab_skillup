@@ -3,18 +3,20 @@ $(function(){
 	$tweetBox=$('#tweetBox');
 	$tweetBtn=$('#tweetBtn');
 	$strNum=$('#strNum');
-	$tweetBox.keydown(function(){
-		var strNum = strlen($(this).val());
-		$strNum.text(140-strNum);
-		if(strNum<=140){
-			$tweetBtn.removeAttr('disabled');
-			$strNum.removeClass('red');
-		}else{
-			$tweetBtn.attr('disabled',true);
-			$strNum.addClass('red');
-		}
-	})
+	$tweetBox.keydown(checkStrNum);
+	checkStrNum();
 });
+function checkStrNum(){
+	var strNum = strlen($tweetBox.val());
+	$strNum.text(140-strNum);
+	if(strNum<=140){
+		$tweetBtn.removeAttr('disabled');
+		$strNum.removeClass('red');
+	}else{
+		$tweetBtn.attr('disabled',true);
+		$strNum.addClass('red');
+	}
+}
 /*
 	以下コピペ
 */
