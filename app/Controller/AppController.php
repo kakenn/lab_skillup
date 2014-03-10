@@ -42,4 +42,7 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		$this->set('user',$this->Auth->user());
 	}
+	public function gotoTop() {
+		$this->redirect(array('controller'=>'index','action'=>'index'));
+	}
 }

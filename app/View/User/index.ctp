@@ -1,14 +1,5 @@
-<h1>いまなにしてる</h1>
-<?php echo $this->Html->script('script'); ?>
-<?php echo $this->Form->create('Tweet'); ?>
-<?php echo $this->Session->flash(); ?>
-<?php echo $this->Form->error('text'); ?>
-<?php echo $this->Form->textarea('text',array('label'=>false,'id'=>'tweetBox')); ?>
-<p>残り<span id="strNum">140</span>文字</p>
-<?php echo $this->Form->submit('ツイート',array('id'=>'tweetBtn')); ?>
-<?php echo $this->Form->end(); ?>
 <ul id="tweetList">
-	<?php foreach ($tweetData['res'] as $value) : ?>
+	<?php foreach ($tweetData as $value) : ?>
 		<li>
 			<dl>
 				<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index',$value['User']['username'])); ?></dt>
@@ -20,11 +11,13 @@
 </ul>
 <div id="page">
 	<?php
+	/*
 	if($tweetData['next']){
 		echo $this->Html->link('次のページへ',array('action'=>'index',$page+1));
 	}
 	if($tweetData['prev']){
 		echo $this->Html->link('前のページへ',array('action'=>'index',$page-1));
 	}
+	*/
 	?>
 </div>

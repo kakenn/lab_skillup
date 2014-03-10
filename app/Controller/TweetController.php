@@ -22,9 +22,15 @@ class TweetController extends AppController {
 			}
 		}
 		//ツイート表示部分の処理
+		//$userInfo = $this->User->getUser($this->Auth->user('id'));
 		$tweetData = $this->Tweet->getTweets($this->Auth->user('id'),$page);
 		$this->set('tweetData',$tweetData);
 		$this->set('page',$page);
+	}
+	public function delete($id=null){
+		if($id!=null){
+
+		}
 	}
 	private function pageNumeric($page){
 		if(!is_numeric($page)) return 1;
