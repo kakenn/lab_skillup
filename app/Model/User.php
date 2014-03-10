@@ -13,6 +13,13 @@ class User extends AppModel {
 			'foreignKey' => 'user_id',
 			'order' => 'follow.follow_id DESC',
 			'dependent' => true,
+		),
+		'tweet' => array(
+			'className' => 'tweet',
+			'foreignKey' => 'user_id',
+			'order' => 'tweet.created DESC',
+			'dependent' => true,
+			'limit' => 1
 		)
 	);
 /**
