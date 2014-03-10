@@ -62,6 +62,20 @@ class Tweet extends AppModel {
 			return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 		}
 	}
+	public function getUserTweets($username=null,$page=1){
+		$result=false;
+		if($username!=null){
+			$result = $this->find('all',array(
+					'conditions' => array(
+						'username'=>$username,
+					),
+					'order' => array('Tweet.created DESC'),
+					'limit' => 10,
+					'page' => $page,
+			));
+		}
+		return $result;
+	}
 	public function beforeSave($options = array()) {
 
 		//現在時刻を代入
