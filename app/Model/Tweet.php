@@ -90,8 +90,6 @@ class Tweet extends AppModel {
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
-			//'fields' => '',
-			//'order' => ''
 		)
 	);
 }
