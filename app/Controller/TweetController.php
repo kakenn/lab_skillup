@@ -21,8 +21,10 @@ class TweetController extends AppController {
 			}
 		}
 		//ツイート表示部分の処理
-		//$userInfo = $this->User->getUser($this->Auth->user('id'));
+		$userInfo = $this->User->getUser($this->Auth->user('id'));
+		$userInfo['Connection'] = $this->User->getConnection($this->Auth->user('id'));
 		$tweetData = $this->Tweet->getTweets($this->Auth->user('id'),$page);
+		$this->set('userInfo',$userInfo);
 		$this->set('tweetData',$tweetData);
 		$this->set('page',$page);
 	}

@@ -8,14 +8,14 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
 	public $name = 'User';
 	public $hasMany = array(
-		'follow' => array(
-			'className' => 'follow',
+		'Follow' => array(
+			'className' => 'Follow',
 			'foreignKey' => 'user_id',
 			'order' => 'follow.follow_id DESC',
 			'dependent' => true,
 		),
-		'tweet' => array(
-			'className' => 'tweet',
+		'Tweet' => array(
+			'className' => 'Tweet',
 			'foreignKey' => 'user_id',
 			'order' => 'tweet.created DESC',
 			'dependent' => true,
@@ -148,6 +148,32 @@ class User extends AppModel {
 				'id'=>$id,
 			),
 		));
+	}
+	public function getConnection($id=null) {
+		if(is_null($id)) return falase;
+
+		App::import('Model','Follow');
+		$follow = new Follow;
+		$res_follow = $follow->find('all',array(
+			'conditions' => array(
+				'user_id' => $id,
+			)
+		));
+		$res_follower = $follow->find('all',array(
+			'conditions' => array(
+				'follow_id' => $id,
+			)
+		));
+
+		App::import('Model','Tweet');
+		$Tweet = new Tweet;
+		$count = $Tweet->find('count',array(
+			'conditions' => array(
+				'user_id' => $id,
+			),
+		));
+
+		return array('follow' => $res_follow,'follower' => $res_follower,'count'=>$count);
 	}
 	public function searchUser($keyword=null,$page=1) {
 		if(is_null($keyword)) return falase;

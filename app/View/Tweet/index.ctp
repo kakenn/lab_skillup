@@ -1,4 +1,13 @@
 <h1>いまなにしてる</h1>
+<div id="userInfo">
+	<h2><?php echo $userInfo['User']['username']; ?></h2>
+	<h3>フォロー</h3>
+	<p class="follow"><?php echo count($userInfo['Connection']['follow']) ?></p>
+	<h3>フォロワー</h3>
+	<p class="follower"><?php echo count($userInfo['Connection']['follower']) ?></p>
+	<h3>投稿</h3>
+	<p class="follower"><?php echo $userInfo['Connection']['count'] ?></p>
+</div>
 <?php echo $this->Html->script('script'); ?>
 <?php echo $this->Form->create('Tweet'); ?>
 <?php echo $this->Session->flash(); ?>
@@ -7,6 +16,16 @@
 <p>残り<span id="strNum">140</span>文字</p>
 <?php echo $this->Form->submit('ツイート',array('id'=>'tweetBtn')); ?>
 <?php echo $this->Form->end(); ?>
+<div id="newTweet">
+	<h2>最新ツイート</h2>
+	<p class="text">
+		<?php echo $userInfo['Tweet'][0]['text']; ?>
+	</p>
+	<p class="date">
+		<?php echo date('Y年m月d日H時i分s秒',strtotime($userInfo['Tweet'][0]['created'])) ?>
+	</p>
+</div>
+<hr>
 <ul id="tweetList">
 	<?php foreach ($tweetData['res'] as $value) : ?>
 		<li>
