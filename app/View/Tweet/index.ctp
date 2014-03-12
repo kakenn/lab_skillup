@@ -15,6 +15,7 @@
 				<dd><?php echo str_replace("\n",'<br>',$value['Tweet']['text']) ?></dd>
 			</dl>
 			<p class="date"><?php echo date('Y年m月d日H時i分s秒',strtotime($value['Tweet']['created'])) ?></p>
+			<?php if($value['User']['id']==$user['id']) echo $this->form->postLink('削除',array('action'=>'delete', $value['Tweet']['id']),array(),'削除しますか？'); ?>
 		</li>
 	<?php endforeach; ?>
 </ul>

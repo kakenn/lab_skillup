@@ -28,7 +28,12 @@ class TweetController extends AppController {
 	}
 	public function delete($id=null){
 		if($id!=null){
-
+			if($this->Tweet->deleteAll(array('Tweet.id'=>$id,'Tweet.user_id'=>$this->Auth->user('id')))){
+				$this->Session->setFlash('削除されました');
+			}else{
+				$this->Session->setFlash('削除に失敗しました。');
+			}
+			$this->redirect(array('action'=>'index'));
 		}
 	}
 	private function pageNumeric($page){
