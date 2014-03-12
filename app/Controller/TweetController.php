@@ -3,7 +3,6 @@ class TweetController extends AppController {
 	public $uses = array('User','Tweet');
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow();
 	}
 
 	public function index($page=1){

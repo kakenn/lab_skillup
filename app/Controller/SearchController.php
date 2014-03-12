@@ -3,7 +3,6 @@ class SearchController extends AppController {
 	public $uses = array('User','Follow');
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow();
 	}
 
 	public function index(){
