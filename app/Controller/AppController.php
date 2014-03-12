@@ -35,6 +35,7 @@ class AppController extends Controller {
 		'Session',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'tweet', 'action' => 'index'),
+			'loginAction' => array('controller' => 'login', 'action' => 'index'),
 			'logoutRedirect' => array('controller' => 'login', 'action' => 'index'),
 		),
 		'DebugKit.Toolbar',
@@ -43,6 +44,6 @@ class AppController extends Controller {
 		$this->set('user',$this->Auth->user());
 	}
 	public function gotoTop() {
-		$this->redirect(array('controller'=>'index','action'=>'index'));
+		$this->redirect_canonical( $requested_url, $do_redirect );(array('controller'=>'index','action'=>'index'));
 	}
 }

@@ -1,9 +1,9 @@
 <h1>いまなにしてる</h1>
 <div id="userInfo">
 	<h2><?php echo $userInfo['User']['username']; ?></h2>
-	<h3>フォロー</h3>
+	<h3><?php echo $this->Html->link('フォローしている',array('action'=>'follow')) ?></h3>
 	<p class="follow"><?php echo count($userInfo['Connection']['follow']) ?></p>
-	<h3>フォロワー</h3>
+	<h3><?php echo $this->Html->link('フォローされている',array('action'=>'follower')) ?></h3>
 	<p class="follower"><?php echo count($userInfo['Connection']['follower']) ?></p>
 	<h3>投稿</h3>
 	<p class="follower"><?php echo $userInfo['Connection']['count'] ?></p>
