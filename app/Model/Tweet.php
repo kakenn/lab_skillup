@@ -36,8 +36,8 @@ class Tweet extends AppModel {
 		));
 		if($res){
 			$follow=array(array('user_id'=>$id));
-			for($i=0;$i<count($res[0]['follow']);$i++){
-				$follow[] = array('user_id'=>$res[0]['follow'][$i]['follow_id']);
+			for($i=0;$i<count($res[0]['Follow']);$i++){
+				$follow[] = array('user_id'=>$res[0]['Follow'][$i]['follow_id']);
 			}
 		}
 		if(!empty($follow)){
@@ -80,7 +80,7 @@ class Tweet extends AppModel {
 		preg_match_all('(https?://[-_.!~*\'()a-zA-Z0-9;/?:@&=+$,%#]+)',$this->data[$this->alias]['text'],$arr);
 
 		//urlを一つ目だけ保存。
-		if(0!=count($arr)){
+		if(1<count($arr)){
 			$this->data[$this->alias]['url']=$arr[0][0];
 		}
 		return true;
