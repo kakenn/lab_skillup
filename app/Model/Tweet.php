@@ -28,53 +28,49 @@ class Tweet extends AppModel {
 		),
 	);
 	public function getTweets($id=null,$page=1){
-		if($id!=null){
-			App::import('Model','User');
-			$user = new User;
-			$res = $user->find('all',array(
-				'conditions' => array('id' => $id)
-			));
-			if($res){
-				$follow=array(array('user_id'=>$id));
-				for($i=0;$i<count($res[0]['follow']);$i++){
-					$follow[] = array('user_id'=>$res[0]['follow'][$i]['follow_id']);
-				}
+		if(is_null($id)) return false;
+		App::import('Model','User');
+		$user = new User;
+		$res = $user->find('all',array(
+			'conditions' => array('id' => $id)
+		));
+		if($res){
+			$follow=array(array('user_id'=>$id));
+			for($i=0;$i<count($res[0]['follow']);$i++){
+				$follow[] = array('user_id'=>$res[0]['follow'][$i]['follow_id']);
 			}
-			if(!empty($follow)){
-				$result = $this->find('all',array(
-					'conditions' => array('OR'=>$follow),
-					'order' => array('Tweet.created DESC'),
-					'limit' => 10,
-					'page' => $page,
-				));
-				$count = $this->find('count',array(
-					'conditions' => array('OR'=>$follow),
-				));
-			}
-			$next=false;
-			$prev=false;
-			if($count>$page*10){
-				$next=true;
-			}
-			if($page>1){
-				$prev=true;
-			}
-			return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 		}
+		if(!empty($follow)){
+			$result = $this->find('all',array(
+				'conditions' => array('OR'=>$follow),
+				'order' => array('Tweet.created DESC'),
+				'limit' => 10,
+				'page' => $page,
+			));
+			$count = $this->find('count',array(
+				'conditions' => array('OR'=>$follow),
+			));
+		}
+		$next=false;
+		$prev=false;
+		if($count>$page*10){
+			$next=true;
+		}
+		if($page>1){
+			$prev=true;
+		}
+		return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 	}
 	public function getUserTweets($username=null,$page=1){
-		$result=false;
-		if($username!=null){
-			$result = $this->find('all',array(
-					'conditions' => array(
-						'username'=>$username,
-					),
-					'order' => array('Tweet.created DESC'),
-					'limit' => 10,
-					'page' => $page,
-			));
-		}
-		return $result;
+		if(is_null($username)) return false;
+		return $this->find('all',array(
+				'conditions' => array(
+					'username'=>$username,
+				),
+				'order' => array('Tweet.created DESC'),
+				'limit' => 10,
+				'page' => $page,
+		));
 	}
 	public function beforeSave($options = array()) {
 

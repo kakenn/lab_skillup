@@ -142,39 +142,37 @@ class User extends AppModel {
 		return preg_match('/^([^\x01-\x7E]|[a-zA-Z0-9-_])+$/', $data);
 	}
 	public function getUser($id=null) {
-		if($id!=null){
-			return $this->find('first',array(
-				'conditions' => array(
-					'id'=>$id,
-				),
-			));
-		}
+		if(is_null($id)) return falase;
+		return $this->find('first',array(
+			'conditions' => array(
+				'id'=>$id,
+			),
+		));
 	}
 	public function searchUser($keyword=null,$page=1) {
-		if($keyword!=null){
-			$user = $this->find('all',array(
-				'conditions' => array(
-					'or' => array(
-						array('username like'=>'%'.$keyword.'%'),
-						array('viewname like'=>'%'.$keyword.'%'),
-					),
+		if(is_null($keyword)) return falase;
+		$user = $this->find('all',array(
+			'conditions' => array(
+				'or' => array(
+					array('username like'=>'%'.$keyword.'%'),
+					array('viewname like'=>'%'.$keyword.'%'),
 				),
-				'order' => array('User.created DESC'),
-				'limit' => 10,
-				'page' => $page,
-			));
-			$count = $this->find('count',array(
-				'conditions' => array(
-					'or' => array(
-						array('username like'=>'%'.$keyword.'%'),
-						array('viewname like'=>'%'.$keyword.'%'),
-					),
-				)
-			));
-			$next = ($count>$page*10)? true : false;
-			$prev = ($page>1)? true : false;
-			return array('user'=>$user,'next'=>$next,'prev'=>$prev);
-		}
+			),
+			'order' => array('User.created DESC'),
+			'limit' => 10,
+			'page' => $page,
+		));
+		$count = $this->find('count',array(
+			'conditions' => array(
+				'or' => array(
+					array('username like'=>'%'.$keyword.'%'),
+					array('viewname like'=>'%'.$keyword.'%'),
+				),
+			)
+		));
+		$next = ($count>$page*10)? true : false;
+		$prev = ($page>1)? true : false;
+		return array('user'=>$user,'next'=>$next,'prev'=>$prev);
 	}
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
