@@ -28,7 +28,7 @@ if($result===null){
 		?></p>
 		<?php
 		if(!$value['follow']){
-			echo $this->form->postLink('follow',array('action'=>'follow', $value['User']['id']),array(),'本当に削除しますか?');
+			echo $this->form->postLink('follow',array('action'=>'follow', $value['User']['id']),array(),'フォローしますか？');
 		}
 		?>
 		</li>
