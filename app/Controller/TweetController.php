@@ -42,10 +42,4 @@ class TweetController extends AppController {
 		if(!is_numeric($page)) return 1;
 		return $page;
 	}
-	public function follower(){
-
-	}
-	public function follow(){
-
-	}
 }
