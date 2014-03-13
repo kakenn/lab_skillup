@@ -14,14 +14,14 @@
 	<dl>
 		<dt><?php echo $this->Html->link($value['follower']['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['follower']['User']['username']))?><?php echo $value['follower']['User']['username']; ?></dt>
 		<dd><?php
-		if(!empty($value['tweet'])){
-			echo str_replace("\n",'<br>',$value['tweet'][0]['text']);
+		if(!empty($value['follower']['Tweet'])){
+			echo str_replace("\n",'<br>',$value['follower']['Tweet'][0]['text']);
 		}
 		?></dd>
 	</dl>
 	<p class="date"><?php
-	if(!empty($value['tweet'])){
-		echo date('Y年m月d日H時i分s秒',strtotime($value['tweet'][0]['created']));
+	if(!empty($value['follower']['Tweet'])){
+		echo date('Y年m月d日H時i分s秒',strtotime($value['follower']['Tweet'][0]['created']));
 	}
 	?></p>
 	<?php

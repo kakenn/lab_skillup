@@ -16,14 +16,14 @@ if($result===null){
 	<dl>
 		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php echo $value['User']['username']; ?></dt>
 		<dd><?php
-		if(!empty($value['tweet'])){
-			echo str_replace("\n",'<br>',$value['tweet'][0]['text']);
+		if(!empty($value['Tweet'])){
+			echo str_replace("\n",'<br>',$value['Tweet'][0]['text']);
 		}
 		?></dd>
 	</dl>
 	<p class="date"><?php
-	if(!empty($value['tweet'])){
-		echo date('Y年m月d日H時i分s秒',strtotime($value['tweet'][0]['created']));
+	if(!empty($value['Tweet'])){
+		echo date('Y年m月d日H時i分s秒',strtotime($value['Tweet'][0]['created']));
 	}
 	?></p>
 	<?php

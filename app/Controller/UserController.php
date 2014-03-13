@@ -36,6 +36,7 @@ class UserController extends AppController {
 		$userInfo['Connection'] = $this->User->getConnection($userID);
 		foreach ($userInfo['Connection']['follow'] as $key => $value) {
 			$userInfo['Connection']['follow'][$key]['flag'] = $this->User->isFollow($this->Auth->user('id'),$value['User']['id']);
+			$userInfo['Connection']['follow'][$key]['follow'] = $this->User->getUser($value['User']['id']);
 		}
 		$this->set('userInfo',$userInfo);
 		$this->set('page',$page);

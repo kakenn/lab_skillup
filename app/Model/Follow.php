@@ -19,6 +19,7 @@ class Follow extends AppModel {
 			'order' => ''
 		)
 	);
+
 	public function doFollow($user_id=null,$follow_id=null){
 		if($user_id!=null && is_numeric($user_id) && $follow_id!=null && is_numeric($follow_id)){
 			if($user_id!=$follow_id){
