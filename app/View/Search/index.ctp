@@ -6,9 +6,8 @@
 <ul id="tweetList">
 <?php
 if($result===null){
-	echo"検索してない";
 }else if($result['user']===array()){
-	echo "検索結果なし";
+	echo "検索結果がありません";
 }else{ ?>
 <?php foreach ($result['user'] as $value) : ?>
 	<?php if($value['User']['id']!=$user['id']): ?>
