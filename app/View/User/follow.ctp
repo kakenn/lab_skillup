@@ -8,7 +8,8 @@
 	<p class="follower"><?php echo $userInfo['Connection']['count'] ?></p>
 </div>
 <ul>
-<?php foreach ($userInfo['Connection']['follow'] as $value) : ?>
+<?php foreach ($userInfo['Connection']['follow'] as $key => $value) : ?>
+	<?php if($key < $page*10 && ($page-1)*10 <= $key): ?>
 	<li>
 	<dl>
 		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php echo $value['User']['username']; ?></dt>
@@ -31,5 +32,16 @@
 	}
 	?>
 	</li>
+	<?php endif;?>
 <?php endforeach;?>
 </ul>
+<div id="page">
+	<?php
+	if(count($userInfo['Connection']['follow']) > $page*10){
+		echo $this->Html->link('次のページへ',array('action'=>'index','id'=>$userInfo['User']['username'],'page'=>$page+1));
+	}
+	if($page > 1){
+		echo $this->Html->link('前のページへ',array('action'=>'index','id'=>$userInfo['User']['username'],'page'=>$page-1));
+	}
+	?>
+</div>
