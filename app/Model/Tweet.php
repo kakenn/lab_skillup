@@ -29,6 +29,7 @@ class Tweet extends AppModel {
 	);
 	public function getTweets($id=null,$page=1){
 		if(is_null($id)) return false;
+		if(!is_numeric($page)) $page = 1;
 		App::import('Model','User');
 		$user = new User;
 		$res = $user->find('all',array(
@@ -51,19 +52,14 @@ class Tweet extends AppModel {
 				'conditions' => array('OR'=>$follow),
 			));
 		}
-		$next=false;
-		$prev=false;
-		if($count>$page*10){
-			$next=true;
-		}
-		if($page>1){
-			$prev=true;
-		}
+		$next = ($count>$page*10)? true : false;
+		$prev = ($page>1)? true : false;
 		return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 	}
 	public function getUserTweets($username=null,$page=1){
 		if(is_null($username)) return false;
-		return $this->find('all',array(
+		if(!is_numeric($page)) $page = 1;
+		$result = $this->find('all',array(
 				'conditions' => array(
 					'username'=>$username,
 				),
@@ -71,6 +67,14 @@ class Tweet extends AppModel {
 				'limit' => 10,
 				'page' => $page,
 		));
+		$count = $this->find('count',array(
+				'conditions' => array(
+					'username'=>$username,
+				),
+		));
+		$next = ($count>$page*10)? true : false;
+		$prev = ($page>1)? true : false;
+		return array('res'=>$result,'count'=>$count,'next'=>$next,'prev'=>$prev);
 	}
 	public function beforeSave($options = array()) {
 

@@ -141,6 +141,18 @@ class User extends AppModel {
 		$data = $data[0];
 		return preg_match('/^([^\x01-\x7E]|[a-zA-Z0-9-_])+$/', $data);
 	}
+	public function getID($username=null) {
+		if(is_null($username)) return false;
+		if($res = $this->find('first',array(
+			'conditions' => array(
+				'username'=>$username,
+			),
+		))){
+			return $res['User']['id'];
+		}else{
+			return false;
+		}
+	}
 	public function getUser($id=null) {
 		if(is_null($id)) return falase;
 		return $this->find('first',array(
@@ -174,6 +186,18 @@ class User extends AppModel {
 		));
 
 		return array('follow' => $res_follow,'follower' => $res_follower,'count'=>$count);
+	}
+	public function isFollow($user_id=null,$follow_id=null) {
+		if(is_null($user_id) || is_null($follow_id) || $user_id==$follow_id) return false;
+		App::import('Model','Follow');
+		$Follow = new Follow;
+		$count = $Follow->find('count',array(
+			'conditions' => array(
+				'user_id' => $user_id,
+				'follow_id' => $follow_id
+			)
+		));
+		return ($count>0)? true : false;
 	}
 	public function searchUser($keyword=null,$page=1) {
 		if(is_null($keyword)) return falase;

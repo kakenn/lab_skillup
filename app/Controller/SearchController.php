@@ -14,7 +14,7 @@ class SearchController extends AppController {
 		if(!empty($word)){
 			$result = $this->User->searchUser($word,$page);
 			foreach ($result['user'] as $key => $value) {
-				$result['user'][$key]['follow'] = ($this->Follow->checkFollow($this->Auth->user('id'),$value['User']['id'])==1)? true : false;
+				$result['user'][$key]['follow'] = $this->User->isFollow($this->Auth->user('id'),$value['User']['id']);
 			}
 		}else{
 			$word="";
@@ -26,6 +26,11 @@ class SearchController extends AppController {
 	public function follow($id=null){
 		if($id==null || !is_numeric($id)) parent::gotoTop();
 		$this->Follow->doFollow($this->Auth->user('id'),$id);
+		$this->redirect($this->referer());
+	}
+	public function unfollow($id=null){
+		if($id==null || !is_numeric($id)) parent::gotoTop();
+		$this->Follow->unFollow($this->Auth->user('id'),$id);
 		$this->redirect($this->referer());
 	}
 }
