@@ -4,6 +4,9 @@ class IndexController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(array('index','signup','signupFinish','userValidate'));
+		if($this->Auth->user()){
+			parent::gotoTop();
+		}
 	}
 
 	public function index(){

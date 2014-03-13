@@ -44,6 +44,10 @@ class AppController extends Controller {
 		$this->set('user',$this->Auth->user());
 	}
 	public function gotoTop() {
-		$this->redirect_canonical( $requested_url, $do_redirect );(array('controller'=>'index','action'=>'index'));
+		if($this->Auth->user()){
+			$this->redirect(array('controller'=>'tweet','action'=>'index'));
+		}else{
+			$this->redirect(array('controller'=>'index','action'=>'index'));
+		}
 	}
 }

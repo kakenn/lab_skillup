@@ -1,4 +1,8 @@
 <h1>サインアップ</h1>
+<div id="signupBox">
+	<h2 class="mb20">もうツイッターに登録していますか？</h2>
+	<?php echo $this->Html->link('ログイン',array('controller'=>'index','action'=>'signup')); ?>
+</div>
 <div id="signup" class="form">
 	<?php echo $this->Html->script('validation'); ?>
 	<?php echo $this->Form->create('User'); ?>

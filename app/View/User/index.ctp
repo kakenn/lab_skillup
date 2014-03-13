@@ -1,3 +1,4 @@
+<h1><?php echo $userInfo['User']['username']; ?>さんのツイート</h1>
 <div id="userInfo">
 	<h2><?php echo $userInfo['User']['username']; ?></h2>
 	<table>
@@ -7,9 +8,9 @@
 			<td><?php echo $userInfo['Connection']['count'] ?></td>
 		</tr>
 		<tr>
-			<th><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$user['username'])) ?></th>
-			<th><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$user['username'])) ?></th>
-			<th><?php echo $this->Html->link('投稿',array('controller'=>'user','action'=>'index','id'=>$user['username'])) ?></th>
+			<th><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$userInfo['User']['username'])) ?></th>
+			<th><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$userInfo['User']['username'])) ?></th>
+			<th><?php echo $this->Html->link('投稿',array('controller'=>'user','action'=>'index','id'=>$userInfo['User']['username'])) ?></th>
 		</tr>
 	</table>
 </div>

@@ -4,6 +4,9 @@ class LoginController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(array('index','login','logout'));
+		if($this->Auth->user()){
+			parent::gotoTop();
+		}
 	}
 
 	public function index(){

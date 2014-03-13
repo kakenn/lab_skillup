@@ -5,6 +5,9 @@
 li{
 	list-style-type: none;
 }
+h1{
+	font-size: $fz20;
+}
 #header{
 	height: 50px;
 	width: 100%;
@@ -123,6 +126,9 @@ li{
 		}
 	}
 }
+#signupBox{
+	float: right;
+}
 .form{
 	.dispErr{
 		color: #f00;
@@ -178,4 +184,26 @@ li{
 }
 .red{
 	color: #f00;
+}
+.btn{
+	cursor: pointer;
+	background: #1e9af8;
+	text-decoration: none;
+	color: #fff;
+	border:none;
+	padding: 5px 15px;
+	border-radius: 5px;
+	-webkit-transition: 100ms linear;
+	-moz-transition: 100ms linear;
+	-ms-transition: 100ms linear;
+	-o-transition: 100ms linear;
+	transition: 100ms linear;
+	&:hover{
+		background: #80c6fa;
+	}
+	&:disabled,
+	&.disabled{
+		background: #ccc;
+		cursor: not-allowed;
+	}
 }

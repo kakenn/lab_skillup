@@ -1,3 +1,4 @@
+<h1><?php echo $userInfo['User']['username']; ?>は<?php echo count($userInfo['Connection']['follow']) ?>人フォローしています。</h1>
 <div id="userInfo">
 	<h2><?php echo $userInfo['User']['username']; ?></h2>
 	<table>
@@ -7,18 +8,19 @@
 			<td><?php echo $userInfo['Connection']['count'] ?></td>
 		</tr>
 		<tr>
-			<th><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$user['username'])) ?></th>
-			<th><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$user['username'])) ?></th>
-			<th><?php echo $this->Html->link('投稿',array('controller'=>'user','action'=>'index','id'=>$user['username'])) ?></th>
+			<th><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$userInfo['User']['username'])) ?></th>
+			<th><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$userInfo['User']['username'])) ?></th>
+			<th><?php echo $this->Html->link('投稿',array('controller'=>'user','action'=>'index','id'=>$userInfo['User']['username'])) ?></th>
 		</tr>
 	</table>
+	<?php echo $this->Html->link('つぶやく',array('contoller'=>'tweet','action'=>'index'),array('class'=>'btn')) ?>
 </div>
-<ul>
+<ul id="tweetList">
 <?php foreach ($userInfo['Connection']['follow'] as $key => $value) : ?>
 	<?php if($key < $page*10 && ($page-1)*10 <= $key): ?>
 	<li>
 	<dl>
-		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php echo $value['User']['username']; ?></dt>
+		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php //echo $value['User']['username']; ?></dt>
 		<dd><?php
 		if(!empty($value['follow']['Tweet'])){
 			echo str_replace("\n",'<br>',$value['follow']['Tweet'][0]['text']);

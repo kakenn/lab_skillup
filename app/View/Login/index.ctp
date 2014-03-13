@@ -1,4 +1,8 @@
 <h1>ログイン</h1>
+<div id="signupBox">
+	<h2 class="mb20">無料でサインアップしよう。</h2>
+	<?php echo $this->Html->link('無料サインアップ',array('controller'=>'index','action'=>'signup'),array('class'=>'btn')); ?>
+</div>
 <div id="login" class="form">
 	<?php echo $this->Form->create('User'); ?>
 	<div class="dispErr">
