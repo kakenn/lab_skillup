@@ -1,20 +1,28 @@
 <h1>いまなにしてる</h1>
 <div id="userInfo">
 	<h2><?php echo $userInfo['User']['username']; ?></h2>
-	<h3><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$user['username'])) ?></h3>
-	<p class="follow"><?php echo count($userInfo['Connection']['follow']) ?></p>
-	<h3><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$user['username'])) ?></h3>
-	<p class="follower"><?php echo count($userInfo['Connection']['follower']) ?></p>
-	<h3>投稿</h3>
-	<p class="follower"><?php echo $userInfo['Connection']['count'] ?></p>
+	<table>
+		<tr>
+			<td><?php echo count($userInfo['Connection']['follow']) ?></td>
+			<td><?php echo count($userInfo['Connection']['follower']) ?></td>
+			<td><?php echo $userInfo['Connection']['count'] ?></td>
+		</tr>
+		<tr>
+			<th><?php echo $this->Html->link('フォローしている',array('controller'=>'user','action'=>'follow','id'=>$user['username'])) ?></th>
+			<th><?php echo $this->Html->link('フォローされている',array('controller'=>'user','action'=>'follower','id'=>$user['username'])) ?></th>
+			<th><?php echo $this->Html->link('投稿',array('controller'=>'user','action'=>'index','id'=>$user['username'])) ?></th>
+		</tr>
+	</table>
 </div>
 <?php echo $this->Html->script('script'); ?>
 <?php echo $this->Form->create('Tweet'); ?>
 <?php echo $this->Session->flash(); ?>
 <?php echo $this->Form->error('text'); ?>
 <?php echo $this->Form->textarea('text',array('label'=>false,'id'=>'tweetBox')); ?>
-<p>残り<span id="strNum">140</span>文字</p>
-<?php echo $this->Form->submit('ツイート',array('id'=>'tweetBtn')); ?>
+<div id="submitBox">
+	<p>残り<span id="strNum">140</span>文字</p>
+	<?php echo $this->Form->submit('ツイート',array('id'=>'tweetBtn')); ?>
+</div>
 <?php echo $this->Form->end(); ?>
 <?php if(isset($userInfo['Tweet'][0])): ?>
 <div id="newTweet">
@@ -36,11 +44,11 @@
 				<dd><?php echo str_replace("\n",'<br>',$value['Tweet']['text']) ?></dd>
 			</dl>
 			<p class="date"><?php echo date('Y年m月d日H時i分s秒',strtotime($value['Tweet']['created'])) ?></p>
-			<?php if($value['User']['id']==$user['id']) echo $this->form->postLink('削除',array('action'=>'delete', $value['Tweet']['id']),array(),'削除しますか？'); ?>
+			<?php if($value['User']['id']==$user['id']) echo $this->form->postLink('削除',array('action'=>'delete', $value['Tweet']['id']),array('class'=>'delBtn'),'削除しますか？'); ?>
 		</li>
 	<?php endforeach; ?>
 </ul>
-<div id="page">
+<div id="page" class="cf">
 	<?php
 	if($tweetData['next']){
 		echo $this->Html->link('次のページへ',array('action'=>'index',$page+1));

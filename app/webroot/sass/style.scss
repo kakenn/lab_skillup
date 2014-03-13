@@ -2,10 +2,126 @@
 @import "_reset";
 @import "_mixin";
 @import "compass";
+li{
+	list-style-type: none;
+}
 #header{
 	height: 50px;
 	width: 100%;
-	background: #ddd;
+	background: #4099FF;
+	img{
+		margin-top: 8px;
+		margin-left: 10px;
+	}
+	ul{
+		float: right;
+		background: #fff;
+		padding: 8px;
+		border-radius: 3px;
+		margin-top: 10px;
+		margin-right: 10px;
+		li{
+			float: left;
+			list-style: none;
+			font-size: $fz10;
+			margin-right: 10px;
+		}
+	}
+}
+#content{
+	padding: 20px 10px;
+	margin-bottom: 50px;
+	width: 800px;
+	margin: 0 auto;
+	.date{
+		color: #aaa;
+	}
+}
+#userInfo{
+	width: 300px;
+	float: right;
+	h2{
+		padding: 5px;
+		background: #4099FF;
+		color: #fff;
+	}
+	td,th{
+		padding: 10px 5px;
+	}
+}
+#page{
+	margin-top: 50px;
+	width: 400px;
+	a{
+		float: right;
+		cursor: pointer;
+		background: #1e9af8;
+		color: #fff;
+		border:none;
+		padding: 5px 15px;
+		border-radius: 5px;
+		-webkit-transition: 100ms linear;
+		-moz-transition: 100ms linear;
+		-ms-transition: 100ms linear;
+		-o-transition: 100ms linear;
+		transition: 100ms linear;
+		text-decoration: none;
+		&:hover{
+			background: #80c6fa;
+		}
+		&:disabled,
+		&.disabled{
+			background: #ccc;
+			cursor: not-allowed;
+		}
+	}
+}
+#tweetBox{
+	border:1px solid #ccc;
+	width: 400px;
+	height: 100px;
+	padding: 5px;
+}
+#TweetIndexForm{
+	width: 412px;
+}
+#tweetList{
+	width: 400px;
+	font-size: $fz15;
+	li{
+		position: relative;
+		border-bottom: 1px solid #eee;
+		padding: 20px;
+	}
+	.delBtn{
+		position: absolute;
+		right: 0;
+		top: 50%;
+	}
+}
+#submitBox{
+	float: right;
+	#tweetBtn{
+		cursor: pointer;
+		background: #1e9af8;
+		color: #fff;
+		border:none;
+		padding: 5px 15px;
+		border-radius: 5px;
+		-webkit-transition: 100ms linear;
+		-moz-transition: 100ms linear;
+		-ms-transition: 100ms linear;
+		-o-transition: 100ms linear;
+		transition: 100ms linear;
+		&:hover{
+			background: #80c6fa;
+		}
+		&:disabled,
+		&.disabled{
+			background: #ccc;
+			cursor: not-allowed;
+		}
+	}
 }
 .form{
 	.dispErr{
@@ -58,11 +174,6 @@
 				cursor: not-allowed;
 			}
 		}
-	}
-}
-#tweetList{
-	li{
-		margin-bottom: 20px;
 	}
 }
 .red{

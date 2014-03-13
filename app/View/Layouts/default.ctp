@@ -25,7 +25,8 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<ul>
+			<?php echo $this->Html->link('<img src="http://placehold.jp/20/3d4070/ffffff/200x35.png?text=Twitter" alt="">',array('controller'=>'tweet','action'=>'index'),array('escape' => false)) ?>
+			<ul class="cf">
 				<?php if($user): ?>
 				<li><?php echo $this->Html->link('ホーム',array('controller'=>'tweet','action'=>'index'))?></li>
 				<li><?php echo $this->Html->link('友達を検索',array('controller'=>'search','action'=>'index'))?></li>

@@ -21,6 +21,7 @@ class SearchController extends AppController {
 			$result=null;
 		}
 		$this->set('word',$word);
+		$this->set('page',$page);
 		$this->set('result',$result);
 	}
 	public function follow($id=null){

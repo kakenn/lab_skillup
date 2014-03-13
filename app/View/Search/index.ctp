@@ -3,7 +3,7 @@
 <?php echo $this->Form->input('keyword',array('label'=>'検索','value'=>$word)); ?>
 <?php echo $this->Form->submit('検索'); ?>
 <?php echo $this->Form->end(); ?>
-<ul>
+<ul id="tweetList">
 <?php
 if($result===null){
 	echo"検索してない";
@@ -14,7 +14,7 @@ if($result===null){
 	<?php if($value['User']['id']!=$user['id']): ?>
 	<li>
 	<dl>
-		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php echo $value['User']['username']; ?></dt>
+		<dt><?php echo $this->Html->link($value['User']['viewname'],array('controller'=>'user','action'=>'index','id'=>$value['User']['username']))?><?php //echo $value['User']['username']; ?></dt>
 		<dd><?php
 		if(!empty($value['Tweet'])){
 			echo str_replace("\n",'<br>',$value['Tweet'][0]['text']);
@@ -28,9 +28,9 @@ if($result===null){
 	?></p>
 	<?php
 	if(!$value['follow']){
-		echo $this->form->postLink('follow',array('action'=>'follow', $value['User']['id']),array(),'フォローしますか？');
+		echo $this->form->postLink('follow',array('action'=>'follow', $value['User']['id']),array('class'=>'delBtn'),'フォローしますか？');
 	}else{
-		echo $this->form->postLink('unfollow',array('action'=>'unfollow', $value['User']['id']),array(),'フォローをやめますか？');
+		echo $this->form->postLink('unfollow',array('action'=>'unfollow', $value['User']['id']),array('class'=>'delBtn'),'フォローをやめますか？');
 	}
 	?>
 	</li>
@@ -38,3 +38,13 @@ if($result===null){
 <?php endforeach;?>
 </ul>
 <?php } ?>
+<div id="page" class="cf">
+	<?php
+	if($result['next']){
+		echo $this->Html->link('次のページへ','./?keyword='.$word.'&page='.($page+1));
+	}
+	if($result['prev']){
+		echo $this->Html->link('前のページへ','./?keyword='.$word.'&page='.($page-1));
+	}
+	?>
+</div>
